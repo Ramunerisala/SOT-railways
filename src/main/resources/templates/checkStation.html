@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http:www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" 
+  href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+  <script 
+  src="https://cdn.jsdelivr.net/npm/jquery@3.6.1/dist/jquery.slim.min.js"></script>
+  <script 
+  src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+  <script 
+  Ssrc="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+    <title>Check Trains</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" 
+integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" 
+crossorigin="anonymous">
+</head>
+<body>
+       
+       <div class="container" >
+	<div th:replace="fragments/navbar::navbar"></div>
+	</div>
+       
+       
+       <div class="container">
+       <h2>Add Train</h2>
+                <hr/>
+       
+       <form th:action="@{/addTrain}" th:object="${train}" method="post">
+         
+       <label>Train Name</label>
+       <input type="text" th:field="*{name}" placeholder="Enter train-name" class="form-control col-4 mb-4"/>
+       
+       <label>Departure Station</label>
+       <input type="text" th:field="*{fromStation}" placeholder="Enter Departure Station" class="form-control col-4 mb-4"/>
+       
+       <label>Arrival Station</label>
+       <input type="text" th:field="*{toStation}" placeholder="Enter Arrival Station" class="form-control col-4 mb-4"/>
+       
+       <label>Departure Time</label>
+       <input type="text" th:field="*{departureTime}" placeholder="Enter Departure Time" class="form-control col-4 mb-4"/>
+       
+       <label>Arrival Time</label>
+       <input type="text" th:field="*{arrivalTime}" placeholder="Enter Arrival Time" class="form-control col-4 mb-4"/>
+       
+       
+       <button type="submit" class="btn btn-primary">Save</button>
+       <input type="hidden" th:field="*{id}"/>
+       
+       </form>
+       
+       
+       
+       
+       
+       </div>
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+</body>
+</html>

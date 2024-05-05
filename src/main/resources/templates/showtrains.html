@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html xmlns:th="http:www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+  <!-- <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" 
+  href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+  <script 
+  src="https://cdn.jsdelivr.net/npm/jquery@3.6.1/dist/jquery.slim.min.js"></script>
+  <script 
+  src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+  <script 
+  Ssrc="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script> -->
+  
+    <title>Trains Schedule</title>
+    <link rel="stylesheet" 
+  type="text/css" 
+  href="https://cdn.datatables.net/v/bs4/dt-1.13.1/datatables.min.css"/>
+  
+  
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" 
+integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" 
+crossorigin="anonymous">
+</head>
+<body style="background-image:url('https://th.bing.com/th/id/R.190ca2e5c82195343fde7a7e97866774?rik=3%2bRxH7q8rO3X0w&riu=http%3a%2f%2fwallpaperswide.com%2fdownload%2flight_background-wallpaper-2560x1600.jpg&ehk=1F8WiJgKa7n%2bZ7no39qKBbmKzYUfuHzjZCwA52woGWo%3d&risl=&pid=ImgRaw&r=0');background-size:cover">
+       
+       <div class="container" >
+	<div th:replace="fragments/navbar::navbar"></div>
+	</div>
+       
+       
+       <div class="container">
+       <h2>Trains Schedule</h2>
+                <hr/>
+       <a th:href="@{addTrain}" class="btn btn-primary mb-2">Add Train</a>
+       <a th:href="@{DeleteTrains}" class="btn btn-primary mb-2">DeleteAllData</a>
+       <table class="table table-bordered table-striped" id="train-table">
+                
+                <thead>
+                
+                <tr>
+                
+                <th>Name</th>
+                <th>From Station</th>
+                <th>To Station</th>
+                <th>Departure Time</th>
+                <th>Arrival Time</th>
+                <th>Enable</th>
+                <th>Actions</th>
+                </tr>
+                </thead>
+       
+              <tbody>
+              
+              <tr th:each="train:${trains}">
+              <td th:text="${train.name}"></td>
+              <td th:text="${train.fromStation}"></td>
+              <td th:text="${train.toStation}"></td>
+              <td th:text="${train.departureTime}"></td>
+              <td th:text="${train.ArrivalTime}"></td>
+              <td th:text="${train.enable}"></td>
+              <td>
+              
+              <a th:href="@{/showUpdateForm(trainId=${train.id})}" class="btn btn-info">Update</a>
+              <a th:href="@{/DeleteRow(trainId=${train.id})}" class="btn btn-danger">Delete</a>
+              </td>
+              
+              
+              
+              </tr>
+              </tbody>
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       </table>
+       </div>
+       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+       <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.13.1/datatables.min.js"></script>
+       
+       
+       <script>
+       
+       
+       $(document).ready(function(){
+    	   
+    	   $("#train-table").DataTable();
+    	   
+    	   
+    	   
+    	   
+    	   
+       })
+       
+       
+       
+       </script>
+       
+       
+       
+       
+       
+       
+       
+       
+</body>
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Google Charts Example - Spring Boot</title>
+<script
+    src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<link rel="stylesheet"
+    href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script type="text/javascript"
+    src="https://www.gstatic.com/charts/loader.js"></script>
+</head>
+<body>
+
+    <div align="center" style="width: 1000px;">
+        <h2 th:text="${message}"></h2>
+        <div id="chart_div" style="width: 500px; height: 500px;"></div>
+        <div id="piechart" style="width: 900px; height: 500px;"></div>
+    </div>
+    <script th:inline="javascript">
+        var real_data1 = /*[[${graph}]]*/'noValue';
+        $(document).ready(function() {
+            google.charts.load('current', {
+                packages : [ 'corechart', 'bar' ]
+            });
+            google.charts.setOnLoadCallback(drawColumnChart);
+            google.charts.setOnLoadCallback(drawPieChart);
+        });
+        function drawColumnChart() {
+            var data1 = new google.visualization.DataTable();
+            data1.addColumn('string', 'Station');
+            data1.addColumn('number', 'Number of passengers');
+            Object.keys(real_data1).forEach(function(key) {
+                data1.addRow([ key, real_data1[key] ]);
+            });
+            var options = {
+                title : 'Blog stats',
+                hAxis : {
+                    title : 'Station',
+                },
+                vAxis : {
+                    title : 'Number of passengers'
+                }
+            };
+            var chart = new google.visualization.ColumnChart(document
+                    .getElementById('chart_div'));
+            chart.draw(data1, options);
+        }
+        function drawPieChart() {
+            var data1= new google.visualization.DataTable();
+            data1.addColumn('string', 'Station');
+            data1.addColumn('number', 'Number of passengers');
+            Object.keys(real_data1).forEach(function(key) {
+                data1.addRow([ key, real_data1[key] ]);
+            });
+            var options = {
+                title : 'Blog stats'
+            };
+            var chart = new google.visualization.PieChart(document
+                    .getElementById('piechart'));
+            chart.draw(data1, options);
+        }
+   </script>
+    
+    
+    
+    
+    
+</body>
+</html>

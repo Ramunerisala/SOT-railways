@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" 
+  href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+  <script 
+  src="https://cdn.jsdelivr.net/npm/jquery@3.6.1/dist/jquery.slim.min.js"></script>
+  <script 
+  src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+  <script 
+  Ssrc="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+    <title>Login Page</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" 
+integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" 
+crossorigin="anonymous">
+<style>
+.error{
+color:red;}
+#button{
+ text-align:center;
+}
+h1{
+    text-align:center;
+    width:600px;
+    margin:5px 300px 5px 500px
+}
+h5{
+    text-align:center;
+    width:300px;
+    
+}
+#main{
+    color:red;
+    background-color: darkblue;
+}
+#sam{text-align:center;}
+#kajal{text-align:center;}
+#second{
+    color:blue;
+}
+
+#login{
+    margin:5px 300px 5px 500px;
+
+}
+
+
+</style>
+
+
+</head>
+<body style="background-image:url('https://th.bing.com/th/id/R.190ca2e5c82195343fde7a7e97866774?rik=3%2bRxH7q8rO3X0w&riu=http%3a%2f%2fwallpaperswide.com%2fdownload%2flight_background-wallpaper-2560x1600.jpg&ehk=1F8WiJgKa7n%2bZ7no39qKBbmKzYUfuHzjZCwA52woGWo%3d&risl=&pid=ImgRaw&r=0');background-size:cover">
+
+
+
+<div class="container" id="login">
+     <div th:if="${session.message}" class="container">
+        <div class="alert alert-danger my-2 text-center" role="alert">
+            <span th:text="${session.message}"></span>
+        </div>
+        <th:block th:text="${#session.removeAttribute('message')}"></th:block>
+    </div>
+     
+      
+     <form th:action="@{/forgot password}" th:object="${users}" method="post">
+
+        
+        <label for="email">Email</label>
+        <input  id="email" type="text" name="email" th:field="*{email}" placeholder="Enter your email address" required class="form-control col-4 mb-4"/><br>
+        
+        
+        
+        
+        
+        <button id="button" type="submit" class="btn btn-warning">Send otp</button>
+    </form>
+
+</div>
+     
+     
+
+</body>
+</html>

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" 
+  href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+  
+  
+  
+  <script 
+  src="https://cdn.jsdelivr.net/npm/jquery@3.6.1/dist/jquery.slim.min.js"></script>
+  <script 
+  src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+  <script 
+  Ssrc="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+    <title>User profile</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" 
+integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" 
+crossorigin="anonymous">
+<style>
+
+
+
+.error{
+color:red;
+
+}
+#button{
+ text-align:center;
+}
+h1{
+    text-align:center;
+}
+#main{
+    color:blue;
+   ;
+}
+#second{
+    color:blue;
+}
+#register{
+margin:5px 300px 5px 500px;}
+
+#login-form input[type="password"],
+#login-form input[type="text"]{
+width:100%;padding:12px 36px 12px 12px;box-sizing:border-box;
+
+}
+
+.container{
+
+width:1000px;position:relative;
+
+}
+
+.fa-eye{position:absolute;top:64%;right:70%;cursor:pointer;color:lightgray;}
+
+
+
+
+
+
+
+</style>
+
+
+
+
+</head>
+<body>
+<h1 th:text="${message}"></h1>
+
+
+
+
+<h1 id="main">Profile</h1>
+
+
+<div class="container" id="register" style="text-align:center">
+      
+     <form th:action="@{/editProfile}" th:object="${profile}" method="post">
+
+        <label for="name">First Name</label><br>
+        <input style="display:inline-block" id="name" type="text" name="firstName" th:field="*{firstName}" placeholder="Enter your first-name" required autofocus class="form-control col-4 mb-4"/>
+        <p th:if="${#fields.hasErrors('firstName')}" th:errorclass="error" th:errors="*{firstName}" class="alert alert-danger"></p>
+        
+        <label for="surname">Sur Name</label><br>
+        <input style="display:inline-block" id="surname" type="text" name="surName" th:field="*{surName}" placeholder="Enter your sur-name" required class="form-control col-4 mb-4"/>
+        <p th:if="${#fields.hasErrors('surName')}" th:errorclass="error" th:errors="*{surName}" class="alert alert-danger"></p>
+        
+        <label for="email">Email</label><br>
+        <input style="display:inline-block" id="email" type="text" name="email" th:field="*{email}" placeholder="Enter your email address" required class="form-control col-4 mb-4" readonly/>
+        <p th:if="${#fields.hasErrors('email')}" th:errorclass="error" th:errors="*{email}" class="alert alert-danger"></p>
+        
+        <label for="password">Create Password</label><br>
+        <input style="display:inline-block" id="password" name="password" type="password" th:field="*{password}" placeholder="Enter password" required class="form-control col-4 mb-4">
+        <i class="fa-solid fa-eye" id="show-password"></i>
+        <p th:if="${#fields.hasErrors('password')}" th:errorclass="error" th:errors="*{password}" class="alert alert-danger"></p>
+        
+       <!--  <label for="DOB">Date of Birth</label>
+        <input  id="DOB" type="date" th:field="*{dob}" class="form-control col-4 mb-4"/> -->
+        
+        <label for="phone">Enter your phone number:</label><br>
+        <input type="tel" name="phoneNumber" id="phone" th:field="*{phoneNumber}"required class="form-control col-4 mb-4">
+        <p th:if="${#fields.hasErrors('phoneNumber')}" th:errorclass="error" th:errors="*{phoneNumber}" class="alert alert-danger"></p>
+        <button id="button" type="submit" class="btn btn-primary">Save</button>
+    </form>
+
+</div>
+
+
+
+<script>
+
+const showPassword=document.querySelector("#show-password");
+const passwordField=document.querySelector("#password");
+showPassword.addEventListener("click",function(){
+	
+	this.classList.toggle("fa-eye-slash");const type=passwordField.getAttribute("type")==="password"?"text":"password";
+	passwordField.setAttribute("type",type);
+	
+	
+	
+})
+
+
+</script>
+
+
+
+
+
+
+
+
+</body>
+</html>

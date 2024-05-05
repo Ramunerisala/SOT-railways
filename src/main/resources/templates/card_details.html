@@ -1,0 +1,469 @@
+<!-- <!-- <!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" 
+  href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" 
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+  <script 
+  src="https://cdn.jsdelivr.net/npm/jquery@3.6.1/dist/jquery.slim.min.js"></script>
+  <script 
+  src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+  <script 
+  Ssrc="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+    <title>Card details</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" 
+integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" 
+crossorigin="anonymous">
+<style>
+
+
+
+.error{
+color:red;
+
+}
+#button{
+ text-align:center;
+}
+h5{
+    text-align:center;
+}
+h1{
+    text-align:center;
+}
+#main{
+color:red;}
+#second{
+    color:blue;
+}
+#register{
+margin:5px 300px 5px 500px;}
+
+#login-form input[type="password"],
+#login-form input[type="text"]{
+width:100%;padding:12px 36px 12px 12px;box-sizing:border-box;
+
+}
+
+.container{
+
+width:1000px;position:relative;
+
+}
+
+.fa-eye{position:absolute;top:64%;right:70%;cursor:pointer;color:lightgray;}
+
+
+
+</style>
+
+
+</head>
+<body>
+
+
+
+<div class="container" >
+	<div th:replace="fragments/navbar2::navbar"></div>
+	</div>
+
+
+<h1 id="second">Card Details</h1>
+<h5 th:text="${session.message}" class="alert alert-warning col-mb-12" role='alert'></h5>
+<th:block th:text="${#session.removeAttribute('message')}"></th:block>
+
+<div th:if="${session.message}" class="container">
+            <div class="alert alert-success my-2 text-center" role="alert">
+                <span th:text="${session.message}"></span>
+            </div>
+            <th:block th:text="${#session.removeAttribute('message')}"></th:block>
+        </div>
+
+
+
+
+<div class="container" id="register">
+
+       
+
+
+
+
+      
+     <form th:action="@{/card}"  method="post">
+
+        <label for="card no">Card Number</label>
+        <input  id="card no" type="text" name="card no" placeholder="Enter your card number" required autofocus class="form-control col-4 mb-4"/>
+        
+        
+        
+        
+        <label for="cvv">cvv</label>
+        <input id="cvv" name="cvv" type="password" placeholder="Enter cvv" required class="form-control col-4 mb-4"/>
+        <i class="fa-solid fa-eye" id="show-password"></i>
+        
+        <label for="DOB">Date of Birth</label>
+        <input  id="DOB" type="date" th:field="*{dob}" class="form-control col-4 mb-4"/>
+        
+        
+        <button id="button" type="submit" class="btn btn-success">Submit</button>
+    </form>
+
+</div>
+
+
+
+<script>
+     
+     const showPassword=document.querySelector("#show-password");
+     const passwordField=document.querySelector("#cvv");
+     showPassword.addEventListener("click",function(){
+     	
+     	this.classList.toggle("fa-eye-slash");const type=passwordField.getAttribute("type")==="cvv"?"text":"cvv";
+     	passwordField.setAttribute("type",type);
+     	
+     	
+     	
+     })
+     
+    
+     
+     </script>
+
+
+
+
+
+
+
+
+</body>
+</html> --> -->
+
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <title>Credit Card</title>
+<meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" 
+  href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" 
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+  <script 
+  src="https://cdn.jsdelivr.net/npm/jquery@3.6.1/dist/jquery.slim.min.js"></script>
+  <script 
+  src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+  <script 
+  Ssrc="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+    <title>Card details</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" 
+integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" 
+crossorigin="anonymous">
+  
+  <link href='https://fonts.googleapis.com/css?family=Roboto:400,300,100' rel='stylesheet' type='text/css'>
+  
+<style>
+
+.container{
+
+width:1000px;position:relative;
+
+}
+
+
+
+/* Global */
+
+* {
+  box-sizing : border-box;
+}
+
+body,
+html {
+  height     : 100%;
+  min-height : 100%;
+}
+
+body {
+  margin           : 0;
+  background-color : #e7e7e7;
+  font-family      : 'Roboto',
+                     sans-serif;
+}
+
+/* Credit Card */
+
+.credit-card {
+  width            : 360px;
+  height           : 400px;
+  margin           : 60px auto 0;
+  border           : 1px solid #ddd;
+  border-radius    : 6px;
+  background-color : #fff;
+  box-shadow       : 1px 2px 3px 0px rgba(0,0,0,0.10);
+}
+
+.form-header {
+  height        : 60px;
+  padding       : 20px 30px 0;
+  border-bottom : 1px solid #E1E8EE;
+}
+
+.form-body {
+  height  : 340px;
+  padding : 30px 30px 20px;
+}
+
+/* Title */
+
+.title {
+  margin    : 0;
+  color     : #5e6977;
+  font-size : 18px;
+}
+
+/* Common */
+
+.card-number,
+.cvv-input input,
+.month select,
+.paypal-btn,
+.proceed-btn,
+.year select {
+  height : 42px;
+}
+
+.card-number,
+.month select,
+.year select {
+  font-size   : 14px;
+  font-weight : 100;
+  line-height : 14px;
+}
+
+.card-number,
+.cvv-details,
+.cvv-input input,
+.month select,
+.year select {
+  color   : #86939e;
+  opacity : .7;
+}
+
+/* Card Number */
+
+.card-number {
+  width         : 100%;
+  margin-bottom : 20px;
+  padding-left  : 20px;
+  border        : 2px solid #e1e8ee;
+  border-radius : 6px;
+}
+
+/* Date Field */
+
+.month select,
+.year select {
+  -moz-appearance     : none;
+  -webkit-appearance  : none;
+  width               : 145px;
+  margin-bottom       : 20px;
+  padding-left        : 20px;
+  border              : 2px solid #e1e8ee;
+  border-radius       : 6px;
+  background          : url('caret.png') no-repeat;
+  background-position : 85% 50%;
+}
+
+.month select {
+  float : left;
+}
+
+.year select {
+  float : right;
+}
+
+/* Card Verification Field */
+
+.cvv-input input {
+  width         : 145px;
+  float         : left;
+  padding-left  : 20px;
+  border        : 2px solid #e1e8ee;
+  border-radius : 6px;
+  background    : #fff;
+}
+
+.cvv-details {
+  float         : right;
+  margin-bottom : 20px;
+  font-size     : 12px;
+  font-weight   : 300;
+  line-height   : 16px;
+}
+
+.cvv-details p {
+  margin-top : 6px;
+}
+
+/* Buttons Section */
+
+.paypal-btn,
+.proceed-btn {
+  cursor: pointer;
+  width         : 100%;
+  border-color  : transparent;
+  border-radius : 6px;
+  font-size     : 16px;
+}
+
+.proceed-btn {
+  margin-bottom : 10px;
+  background    : #7dc855;
+}
+
+.paypal-btn a,
+.proceed-btn a {
+  text-decoration : none;
+  cursor          : pointer;
+}
+
+.proceed-btn a {
+  color : #fff;
+}
+
+.paypal-btn a {
+  color : rgba(242, 242, 242, 0.7);
+}
+
+.paypal-btn {
+  padding-right : 95px;
+  background    : url('paypal-logo.svg') no-repeat 65% 56% #009cde;
+}
+
+
+
+
+
+</style>
+
+  <meta name="robots" content="noindex,follow" />
+</head>
+
+<body>
+
+<div th:if="${#session.getAttribute('user')}!=null">
+    <div th:replace="fragments/navbar2::navbar"></div>
+    </div>
+    
+    <div th:if="${#session.getAttribute('user')}==null">
+    <div th:replace="fragments/navbar3::navbar"></div>
+    </div>
+
+<div th:if="${session.message}" class="container">
+            <div class="alert alert-success my-2 text-center" role="alert">
+                <span th:text="${session.message}"></span>
+            </div>
+            <th:block th:text="${#session.removeAttribute('message')}"></th:block>
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+    <form th:action="@{/card}" method="post" class="credit-card">
+      <div class="form-header">
+        <h4 class="title">Credit card detail</h4>
+      </div>
+
+      <div class="form-body">
+        <!-- Card Number -->
+        <input type="text" name="card no" class="card-number" placeholder="Card Number">
+
+        <!-- Date Field -->
+        <div class="date-field">
+          <div class="month">
+            <select name="Month">
+              <option value="january">January</option>
+              <option value="february">February</option>
+              <option value="march">March</option>
+              <option value="april">April</option>
+              <option value="may">May</option>
+              <option value="june">June</option>
+              <option value="july">July</option>
+              <option value="august">August</option>
+              <option value="september">September</option>
+              <option value="october">October</option>
+              <option value="november">November</option>
+              <option value="december">December</option>
+            </select>
+          </div>
+          <div class="year">
+            <select name="Year">
+              <option value="2016">2016</option>
+              <option value="2017">2017</option>
+              <option value="2018">2018</option>
+              <option value="2019">2019</option>
+              <option value="2020">2020</option>
+              <option value="2021">2021</option>
+              <option value="2022">2022</option>
+              <option value="2023">2023</option>
+              <option value="2024">2024</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Card Verification Field -->
+        <div class="card-verification">
+          <div class="cvv-input">
+            <input type="text" name="cvv" placeholder="CVV">
+          </div>
+          <div class="cvv-details">
+            <p>3 or 4 digits usually found <br> on the signature strip</p>
+          </div>
+        </div>
+
+        <!-- Buttons -->
+        <button type="submit" class="proceed-btn">Proceed</button>
+        
+      </div>
+    </form>
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
